@@ -15,7 +15,7 @@ private const val QUERY_START_DATE = "start_date"
 private const val QUERY_END_DATE = "end_date"
 
 //values
-const val API_KEY = "DEMO_KEY" //Add your own API key here
+const val API_KEY = "DEMO_KEY" //Add your own API key here, you can get it from this site: https://api.nasa.gov/
 private const val BASE_URL = "https://api.nasa.gov/"
 
 //build retrofit
