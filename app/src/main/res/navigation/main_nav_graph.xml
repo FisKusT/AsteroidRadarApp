@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/asteroidListFragment">
+
+    <fragment
+        android:id="@+id/asteroidListFragment"
+        android:name="com.fiskus.asteroidradarapp.ui.asteroid_list.AsteroidListFragment"
+        android:label="AsteroidListFragment" >
+        <action
+            android:id="@+id/action_asteroidListFragment_to_asteroidDetailsFragment"
+            app:destination="@id/asteroidDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/asteroidDetailsFragment"
+        android:name="com.fiskus.asteroidradarapp.ui.asteroid_details.AsteroidDetailsFragment"
+        android:label="AsteroidDetailsFragment" >
+        <argument
+            android:name="asteroid"
+            app:argType="com.fiskus.asteroidradarapp.model.Asteroid" />
+    </fragment>
+</navigation>

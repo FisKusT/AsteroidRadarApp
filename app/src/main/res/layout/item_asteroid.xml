@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="asteroid"
+            type="com.fiskus.asteroidradarapp.model.Asteroid" />
+
+        <variable
+            name="callback"
+            type="com.fiskus.asteroidradarapp.ui.asteroid_list.AsteroidsListAdapter.AsteroidsListAdapterListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/normal_margin"
+        android:onClick="@{()->callback.onClick(asteroid)}">
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/StyleSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="68347 (2001 KB67)"
+            android:text="@{asteroid.name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/line_margin"
+            tools:text="2020-02-08"
+            android:text="@{asteroid.formattedDate}"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/name"
+            app:srcCompat="@drawable/ic_status_normal"
+            app:statusIcon="@{asteroid.hazardous}"
+            tools:ignore="ContentDescription" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

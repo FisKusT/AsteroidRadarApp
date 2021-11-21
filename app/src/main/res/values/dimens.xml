@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="line_margin">5dp</dimen>
+    <dimen name="image_height">180dp</dimen>
+    <!--Text size-->
+    <dimen name="normal_text_size">16sp</dimen>
+    <dimen name="subtitle_size">18sp</dimen>
+</resources>

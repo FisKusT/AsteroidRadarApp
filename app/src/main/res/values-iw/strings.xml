@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--Mostly translated using google translate-->
+    <string name="app_name">ראדר אסטרואידים</string>
+
+    <string name="close_approach_data_title">תאריך גישה קרוב</string>
+    <string name="absolute_magnitude_title">גודל מוחלט</string>
+    <string name="estimated_diameter_title">קוטר משוער</string>
+    <string name="relative_velocity_title">מהירות יחסית</string>
+    <string name="distance_from_earth_title">מרחק מכדור הארץ</string>
+    <string name="astronomical_unit_explanation">היחידה האסטרונומית היא יחידת אורך, בערך המרחק מכדור הארץ לשמש ושווה לכ-150 מיליון קילומטרים</string>
+    <string name="astronomical_unit_explanation_button">הגדרת היחידה האסטרונומית</string>
+    <string name="ok_button">הבנתי!</string>
+    <string name="potentially_hazardous_asteroid_image">תמונת אסטרואיד שעלול להיות מסוכן</string>
+    <string name="not_hazardous_asteroid_image">תמונת אסטרואיד לא מסוכן</string>
+    <string name="nasa_picture_of_day_content_description_format">תמונת היום של נאסה: %s</string>
+    <string name="status_image">תמונה המציגה את מצב בקשת הרשת</string>
+
+
+    <!--Chips strings-->
+    <string name="filter_today">היום</string>
+    <string name="filter_three_days">3 ימים</string>
+    <string name="filter_five_days">5 ימים</string>
+    <string name="filter_seven_days">7 ימים</string>
+    <string name="internet_error">שגיאת אינטרנט, אנא בדוק את האינטרנט של המכשיר</string>
+
+</resources>

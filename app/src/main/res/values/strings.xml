@@ -1,0 +1,26 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Asteroid Radar</string>
+
+    <string name="close_approach_data_title">Close approach date</string>
+    <string name="absolute_magnitude_title">Absolute magnitude</string>
+    <string name="estimated_diameter_title">Estimated diameter</string>
+    <string name="relative_velocity_title">Relative velocity</string>
+    <string name="distance_from_earth_title">Distance from earth</string>
+    <string name="astronomical_unit_format" tools:ignore="MissingTranslation">%s au</string>
+    <string name="km_unit_format" tools:ignore="MissingTranslation">%f km</string>
+    <string name="km_s_unit_format" tools:ignore="MissingTranslation">%s km/s</string>
+    <string name="astronomical_unit_explanation">The astronomical unit (au) is a unit of length, roughly the distance from Earth to the Sun and equal to about 150 million kilometres (93 million miles)</string>
+    <string name="astronomical_unit_explanation_button">Astronomical unit definition</string>
+    <string name="ok_button">Got it!</string>
+    <string name="potentially_hazardous_asteroid_image">Potentially hazardous asteroid image</string>
+    <string name="not_hazardous_asteroid_image">Not hazardous asteroid image</string>
+    <string name="nasa_picture_of_day_content_description_format">NASA\'s picture of day: %s</string>
+    <string name="status_image">An image that display the status of the network request</string>
+
+    <!--Chips strings-->
+    <string name="filter_today">Today</string>
+    <string name="filter_three_days">3 Days</string>
+    <string name="filter_five_days">5 Days</string>
+    <string name="filter_seven_days">7 Days</string>
+    <string name="internet_error">Connection failure, please check you device network connection</string>
+</resources>

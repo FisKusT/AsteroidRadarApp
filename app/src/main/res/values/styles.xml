@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="StyleSubtitle">
+        <item name="android:textSize">@dimen/subtitle_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="StyleInfoDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+    </style>
+    <style name="StyleChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="checkedIconVisible">true</item>
+        <item name="chipBackgroundColor">@color/selected_highlight</item>
+    </style>
+
+    <style name="StyleInternetStatusImage">
+        <item name="android:contentDescription">@string/status_image</item>
+        <item name="android:scaleType">fitXY</item>
+    </style>
+</resources>
