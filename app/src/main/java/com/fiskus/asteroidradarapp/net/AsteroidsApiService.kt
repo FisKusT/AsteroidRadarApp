@@ -16,7 +16,6 @@ private const val QUERY_END_DATE = "end_date"
 
 //values
 const val API_KEY = "P3DFP6MwTfcnraWpgGBUtV4zhb1Xb7fUyp5D8i8f"
-//private const val BASE_URL = "https://api.nasa.gov/"
 private const val BASE_URL = "https://api.nasa.gov/"
 
 //build retrofit
