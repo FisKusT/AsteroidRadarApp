@@ -28,7 +28,7 @@ data class NasaImageDB (
     val mediaType: String
 )
 
-//convert asteroid net model list to asteroid db model list
+//convert NasaImageDB to NasaImage
 fun NasaImageDB.asModel(): NasaImage {
     return NasaImage(
         url = url,

@@ -8,6 +8,7 @@ import androidx.work.WorkManager
 import com.fiskus.asteroidradarapp.db.NasaDatabase
 import com.fiskus.asteroidradarapp.model.Asteroid
 import com.fiskus.asteroidradarapp.repo.AsteroidListRepo
+import com.fiskus.asteroidradarapp.utils.InternetStatus
 import com.fiskus.asteroidradarapp.utils.convertDateMilliToFormattedDate
 import com.fiskus.asteroidradarapp.utils.getConnectedConstraints
 import com.fiskus.asteroidradarapp.utils.getCurrentDateListPlusXDaysInMilli
@@ -73,20 +74,6 @@ class AsteroidListViewModel @Inject constructor(@ApplicationContext context: Con
         resetEvents()
     }
 
-    //set worker to reload data on internet connected
-    fun onInternetFailure(context: Context) {
-        viewModelScope.launch {
-            //set one time worker constraints
-            val internetFailureRequest = OneTimeWorkRequestBuilder<RefreshDataWorker>()
-                .setConstraints(getConnectedConstraints())
-                .build()
-
-            //enqueue work
-            WorkManager.getInstance(context)
-                .enqueue(internetFailureRequest)
-        }
-    }
-
     //on asteroid click
     fun onAsteroidClick(asteroid: Asteroid) {
         //navigate to details page
@@ -115,6 +102,27 @@ class AsteroidListViewModel @Inject constructor(@ApplicationContext context: Con
     fun onAsteroidListDataChange(asteroidsListRV: RecyclerView) {
         //scroll to top on data change
         asteroidsListRV.scrollToPosition(0)
+    }
+
+    fun onAsteroidListObserver(asteroidsList: List<Asteroid>) {
+        if(asteroidsList.isEmpty()) {
+            Timber.d("load data for the first time")
+            //load data for the first time
+            loadFirstData()
+        } else{
+            Timber.d("Set Asteroids list")
+            //set the filtered list
+            onAsteroidListFilterClick(filteredValue)
+        }
+    }
+
+    //on request status change
+    fun onRequestStatusChange(status: InternetStatus, context: Context) {
+        //handle error status
+        if (status == InternetStatus.ERROR) {
+            //set worker to reload data on connection available
+            repo.setWorkToReloadDataOnConnection(context)
+        }
     }
 
 }

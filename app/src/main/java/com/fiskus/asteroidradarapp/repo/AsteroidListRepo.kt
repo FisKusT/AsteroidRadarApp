@@ -1,8 +1,11 @@
 package com.fiskus.asteroidradarapp.repo
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.fiskus.asteroidradarapp.db.NasaDatabase
 import com.fiskus.asteroidradarapp.db.model.AsteroidDBModel
 import com.fiskus.asteroidradarapp.db.model.asModel
@@ -12,6 +15,7 @@ import com.fiskus.asteroidradarapp.net.NasaApi
 import com.fiskus.asteroidradarapp.net.model.asDBModel
 import com.fiskus.asteroidradarapp.net.utils.parseAsteroidsJsonResult
 import com.fiskus.asteroidradarapp.utils.*
+import com.fiskus.asteroidradarapp.worker.RefreshDataWorker
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -86,6 +90,9 @@ class AsteroidListRepo(private val nasaDatabase: NasaDatabase) {
             //try to set only if not called from worker
             if (isStatusSet) {
                 setListStatusToErrorIfThereIsNoOfflineCache()
+            } else {
+                //it's called from worker needs to throw an exception to let the worker know that a failure as occourd
+                throw Exception("${e.message}")
             }
         }
     }
@@ -132,27 +139,45 @@ class AsteroidListRepo(private val nasaDatabase: NasaDatabase) {
         }
     }
 
+    //on internet failure
+    fun setWorkToReloadDataOnConnection(context: Context) {
+        Timber.d("start one time worker:")
+        //set one time worker constraints
+        val internetFailureRequest = OneTimeWorkRequestBuilder<RefreshDataWorker>()
+            .setConstraints(getConnectedConstraints())
+            .build()
+
+        //enqueue work
+        WorkManager.getInstance(context)
+            .enqueue(internetFailureRequest)
+    }
+
     //set asteroids list status to done if offline caching exists
     //else status is when there is no offline cache- error
     private fun setListStatusToErrorIfThereIsNoOfflineCache() {
+        Timber.d("setListStatusToErrorIfThereIsNoOfflineCache:")
         //check if list is not empty
         if (asteroidsList.value?.isNotEmpty() == true) {
             //if so set status to done
             setStatusToDone()
+            Timber.d("set to done")
         } else {
             //set status to else
             _asteroidsStatus.value = InternetStatus.ERROR
+            Timber.d("set to error")
 
         }
     }
 
     //set status to loading
     fun setStatusToLoading() {
+        Timber.d("setStatusToLoading")
         _asteroidsStatus.value = InternetStatus.LOADING
     }
 
     //set status to done
     fun setStatusToDone() {
+        Timber.d("setStatusToDone")
         _asteroidsStatus.value = InternetStatus.DONE
     }
 }

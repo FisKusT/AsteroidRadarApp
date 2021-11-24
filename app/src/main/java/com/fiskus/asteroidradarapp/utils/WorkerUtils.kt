@@ -12,7 +12,7 @@ fun getConnectedConstraints() = Constraints.Builder()
 
 //get friendly constraints
 fun getFriendlyConstraints() = Constraints.Builder()
-    .setRequiredNetworkType(NetworkType.CONNECTED)
+    .setRequiredNetworkType(NetworkType.UNMETERED)
                 .setRequiresBatteryNotLow(true)
                 .setRequiresCharging(true)
                 .apply {

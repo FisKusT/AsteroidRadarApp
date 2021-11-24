@@ -54,22 +54,12 @@ class AsteroidListFragment : Fragment() {
 
         //observe the asteroid list data
         viewModel.repo.asteroidsList.observe(viewLifecycleOwner) { asteroidsList->
-            if(asteroidsList.isEmpty()) {
-                Timber.d("load data for the first time")
-                //load data for the first time
-                viewModel.loadFirstData()
-            } else{
-                Timber.d("Set Asteroids list")
-                //set the filtered list
-                viewModel.onAsteroidListFilterClick(viewModel.filteredValue)
-            }
+            viewModel.onAsteroidListObserver(asteroidsList)
         }
 
-        //observe call status
+        //observer the network request status
         viewModel.repo.asteroidsStatus.observe(viewLifecycleOwner) { status->
-            if (status == InternetStatus.ERROR) {
-                viewModel.onInternetFailure(requireContext())
-            }
+            viewModel.onRequestStatusChange(status, requireContext())
         }
 
         //chip group click listener
